@@ -80,30 +80,32 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: ListView.separated(
                                 itemCount: searchInfo.length,
                                 itemBuilder: (context, index) {
-                                  return Column(children: <Widget>[
-                                    Align(
-                                      child: Text(
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(vertical:8.0),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                      Text(
                                         '${searchInfo[index].name}',
                                         style: TextStyle(
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.w600),
                                       ),
-                                      alignment: Alignment.topLeft,
-                                    ),
-                                    RichText(text: TextSpan(
-                                      text: '${searchInfo[index].url}',
-                                      style: TextStyle(
-                                          fontSize: 18.0,
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline),
-                                      recognizer: TapGestureRecognizer()..onTap = () async{
-                                        if(await canLaunch(searchInfo[index].url)){
-                                        await launch(searchInfo[index].url);
-                                        }else{
-                                        throw 'Could not launch ${searchInfo[index].url}';
+                                      RichText(text: TextSpan(
+                                        text: '${searchInfo[index].url}',
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.blue,
+                                            decoration: TextDecoration.underline),
+                                        recognizer: TapGestureRecognizer()..onTap = () async{
+                                          if(await canLaunch(searchInfo[index].url)){
+                                          await launch(searchInfo[index].url);
+                                          }else{
+                                          throw 'Could not launch ${searchInfo[index].url}';
+                                          }
                                         }
-                                      }
-                                    )),
+                                      )),
 //                                  GestureDetector(
 //                                    child: Text(
 //                                      '${searchInfo[index].url}',
@@ -120,13 +122,14 @@ class _MyHomePageState extends State<MyHomePage> {
 //                                     }
 //                                    },
 //                                  ),
-                                    Text(
-                                      '${searchInfo[index].snippet}',
-                                      style: TextStyle(fontSize: 18.0),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ]);
+                                      Text(
+                                        '${searchInfo[index].snippet}',
+                                        style: TextStyle(fontSize: 18.0),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ]),
+                                  );
                                 },
                                 separatorBuilder: (_, __) => Divider(
                                   color: Colors.green[800],
